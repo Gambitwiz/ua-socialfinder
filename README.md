@@ -29,3 +29,18 @@ Then open http://127.0.0.1:4310. Internet access loads optional Google Fonts; sy
 - `_bmad/` and `.agents/skills/`: installed BMAD Method workflow.
 
 Organizer event editing is not implemented; it was a Could-have in the SOW. This mockup focuses on student discovery and planning. The demo date is fixed to November 17–22, 2026, clearly labeled in the interface.
+
+
+## Google Calendar demonstration
+
+1. Open **My calendar** and choose **Try the mock connection**.
+2. Continue with the fictional Jamie Parker account and acknowledge the simulation. No Google sign-in occurs.
+3. Review five fictional commitments in the November 17–22 agenda.
+4. Add **Sunset Walk & Talk** to demonstrate its overlap with the project meeting. Confirm the overlap or cancel.
+5. Add **Board Games, New Names** to show a conflict-free event. Open Manage to remove it; duplicate additions are prevented.
+6. Open event details from Discover to access the same calendar flow. Connected event cards show schedule-fit badges.
+7. Reload to demonstrate local persistence. Disconnect clears the mock connection and calendar entries while preserving saved events, RSVPs and preferences. Reset demo clears both app and mock-calendar data.
+
+The fictional account uses `jamie.parker@example.com`. No Google service is contacted. Existing saved plans/preferences are preserved when upgrading this mockup. All data stays in the current browser; the deployed site and local preview have separate demo state.
+
+Run calendar verification with `node --test tests/calendar.test.cjs` (no dependencies required).

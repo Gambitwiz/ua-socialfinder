@@ -52,3 +52,22 @@ No prior team overrides, interviews, user-testing results, or approvals have bee
 - Installed workflow: `.agents/skills/bmad-build/SKILL.md`; rendered one-shot workflow under `_bmad/render/bmad-build/`.
 - Build specification: `_bmad-output/implementation-artifacts/spec-socialfinder.md`.
 - SOW: supplied Word document, sections 3–6 and 9.
+
+
+## Calendar improvement pass — November 17, 2026
+
+The user requested continued improvement and a mock Google Calendar feature using demo data. These are new decisions made in this session, not historical weekly-report entries.
+
+| ID | Input or review output | Decision | Reason / observed result |
+| --- | --- | --- | --- |
+| C01 | User explicitly requested a mock Google Calendar connection. | Implemented a fictional account and consent flow entirely in-browser. | No real OAuth, Google API, account discovery, credentials, permissions or real calendar writes are used. The UI repeatedly labels the simulation. |
+| C02 | Calendar planning needs meaningful sample data. | Added five fictional commitments for the fixed demo week and a six-day agenda. | Students can see campus events beside class and personal plans without importing private data. |
+| C03 | Some campus events overlap sample commitments. | Require acknowledgement before adding a conflicting full event; explain drop-in versus full-session expectations. | Sunset Walk overlaps the fictional project meeting; Clay & Conversation overlaps the study group. Adjacent events are not conflicts. |
+| C04 | Calendar entries and RSVPs represent different actions. | Store mock calendar entries separately; prevent duplicates; disconnect clears only calendar state. | Browser verification confirmed saved plans remain after disconnect. Adding to calendar does not imply a real reservation. |
+| C05 | BMAD review found shared modal-close handling and lost focus during transitions/rerenders. | Accepted all three findings and patched handlers, heading focus and logical focus restoration. | Closing calendar preview leaves event details open; after adding, focus returns to a control for that event. |
+| C06 | BMAD review found incomplete storage-failure feedback in reset and connection-from-event paths. | Accepted both findings; included calendar persistence status in reset feedback and the connection continuation. | Failed writes retain session operation while reporting the persistence limitation. |
+| C07 | BMAD review found that an added conflicting event showed overlap only through color. | Accepted; added overlap wording to the badge. | Schedule conflict is available to screen-reader users and does not rely on color. |
+| C08 | BMAD blind-hunter review computed a seven-finding floor but found six concrete issues. | Accepted the evidence-based six findings instead of inventing an additional defect. | All six were checked and fixed. No findings deferred. |
+| C09 | User asked to continuously improve the experience. | Completed a bounded implementation, review, correction and validation cycle; added mobile navigation wrapping and a keyboard skip link. | No unrequested recurring automation or claim of background work was created. |
+
+Validation: `node --test tests/calendar.test.cjs` passed all nine tests; JS syntax checks passed. Browser checks covered consent gating, overlaps, add/remove, duplicate prevention, reload persistence, connection from details, parent-dialog preservation, disconnect, saved-plan preservation and mobile overflow. Calendar data is still fictional and local to each browser.
